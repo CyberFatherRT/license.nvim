@@ -54,10 +54,12 @@ local license_table = {
     ["Apache2"] = apache2.get_license,
     ["Unlicense"] = unlicense.get_license,
     ["GPL3"] = gpl3.get_license,
+    ["GPL2"] = gpl2.get_license,
     ["AGPL3"] = agpl3.get_license,
     ["LGPL3"] = lgpl3.get_license,
     ["MPL2"] = mpl2.get_license,
     ["BSD3"] = bsd3.get_license,
+    ["CC0"] = cc0.get_license,
 }
 
 local set_license = function(bufnr, license)
