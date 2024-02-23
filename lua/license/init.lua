@@ -20,10 +20,12 @@ local mit = require("license.licenses.mit")
 local apache2 = require("license.licenses.apache2")
 local unlicense = require("license.licenses.unlicense")
 local gpl3 = require("license.licenses.gpl3")
+local gpl2 = require("license.licenses.gpl2")
 local agpl3 = require("license.licenses.agpl3")
 local lgpl3 = require("license.licenses.lgpl3")
 local mpl2 = require("license.licenses.mpl2")
 local bsd3 = require("license.licenses.bsd3")
+local cc0 = require("license.licenses.cc0")
 
 local function getTableKeys(tab)
     local keyset = {}
@@ -39,10 +41,12 @@ local telescope_license_table = {
     ["Apache 2"] = apache2,
     ["Unlicense"] = unlicense,
     ["GNU General Public License v.3 (GPL3)"] = gpl3,
+    ["GNU General Public License v.2 (GPL2)"] = gpl2,
     ["GNU Affero General Public License v.3 (AGPL3)"] = agpl3,
     ["GNU Lesser General Public License v.3 (LGPL3)"] = lgpl3,
     ["Mozilla Public License 2.0 (MPL2)"] = mpl2,
     ["BSD 3-Clause (BSD3)"] = bsd3,
+    ["Creative Commons Legal Code (CC0)"] = cc0,
 }
 
 local license_table = {
