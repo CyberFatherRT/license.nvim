@@ -1,3 +1,6 @@
+local M = {}
+
+local license = [[
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -17,7 +20,7 @@
       control with that entity. For the purposes of this definition,
       "control" means (i) the power, direct or indirect, to cause the
       direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      otherwise, or (ii) ownership of fifty percent (50%%) or more of the
       outstanding shares, or (iii) beneficial ownership of such entity.
 
       "You" (or "Your") shall mean an individual or Legal Entity
@@ -186,7 +189,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright %d %s
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -199,4 +202,11 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+]]
 
+M.get_license = function(fullname)
+    local current_year = io.popen("date +%Y"):read()
+    return string.format(license, current_year, fullname)
+end
+
+return M

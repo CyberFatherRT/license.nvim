@@ -5,6 +5,7 @@ M.setup = function (username)
 end
 
 local mit = require("license.licenses.mit")
+local apache2 = require("license.licenses.apache2")
 
 local set_license = function (bufnr, license)
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(license, "\n"))
@@ -15,7 +16,17 @@ vim.api.nvim_create_user_command("License", function (opts)
     local license = opts.fargs[1]
     if license == "MIT" then
         set_license(bufnr, mit.get_license(M.name))
+    elseif license == "Apache2" then
+        set_license(bufnr, apache2.get_license(M.name))
     end
-end, { nargs = "*" })
+end, {
+        nargs = 1,
+        complete = function ()
+            return {
+                "MIT",
+                "Apache2"
+            }
+        end
+})
 
 return M
