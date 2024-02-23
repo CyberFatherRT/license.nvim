@@ -4,6 +4,10 @@ M.setup = function (username)
     M.name = username
 end
 
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
+
 local mit = require("license.licenses.mit")
 local apache2 = require("license.licenses.apache2")
 local gpl3 = require("license.licenses.gpl3")
@@ -24,11 +28,11 @@ vim.api.nvim_create_user_command("License", function (opts)
     elseif license == "Apache2" then
         set_license(bufnr, apache2.get_license(M.name))
     elseif license == "GPL3" then
-        set_license(bufnr, gpl3.get_license(M.name, opts.fargs[2]))
+        set_license(bufnr, gpl3.get_license(M.name))
     elseif license == "AGPL3" then
-        set_license(bufnr, agpl3.get_license(M.name, opts.fargs[2]))
+        set_license(bufnr, agpl3.get_license(M.name))
     elseif license == "LGPL3" then
-        set_license(bufnr, lgpl3.get_license(M.name, opts.fargs[2]))
+        set_license(bufnr, lgpl3.get_license(M.name))
     elseif license == "MPL2" then
         set_license(bufnr, mpl2.get_license())
     elseif license == "BSD3" then

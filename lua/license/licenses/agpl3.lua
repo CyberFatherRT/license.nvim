@@ -664,9 +664,9 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 <https://www.gnu.org/licenses/>.
 ]]
 
-M.get_license = function (fullname, prog_name)
+M.get_license = function (fullname)
     local current_year = io.popen("date +%Y"):read()
-    local program_name = prog_name or "<one line to give the program's name and a brief idea of what it does.>"
+    local program_name = vim.fn.input("Program name: ")
     return string.format(license, program_name, current_year, fullname)
 end
 
