@@ -678,8 +678,9 @@ Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 ]]
 
-M.get_license = function (fullname, program_name)
+M.get_license = function (fullname, prog_name)
     local current_year = io.popen("date +%Y"):read()
+    local program_name = prog_name  or "<program name>"
     return string.format(license, program_name, current_year, fullname)
 end
 
