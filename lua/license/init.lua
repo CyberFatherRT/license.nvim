@@ -18,6 +18,7 @@ local conf = require("telescope.config").values
 
 local mit = require("license.licenses.mit")
 local apache2 = require("license.licenses.apache2")
+local unlicense = require("license.licenses.unlicense")
 local gpl3 = require("license.licenses.gpl3")
 local agpl3 = require("license.licenses.agpl3")
 local lgpl3 = require("license.licenses.lgpl3")
@@ -36,6 +37,7 @@ end
 local telescope_license_table = {
     ["MIT"] = mit,
     ["Apache 2"] = apache2,
+    ["Unlicense"] = unlicense,
     ["GNU General Public License v.3 (GPL3)"] = gpl3,
     ["GNU Affero General Public License v.3 (AGPL3)"] = agpl3,
     ["GNU Lesser General Public License v.3 (LGPL3)"] = lgpl3,
@@ -46,6 +48,7 @@ local telescope_license_table = {
 local license_table = {
     ["MIT"] = mit.get_license,
     ["Apache2"] = apache2.get_license,
+    ["Unlicense"] = unlicense.get_license,
     ["GPL3"] = gpl3.get_license,
     ["AGPL3"] = agpl3.get_license,
     ["LGPL3"] = lgpl3.get_license,
