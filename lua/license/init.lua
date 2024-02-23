@@ -24,6 +24,8 @@ vim.api.nvim_create_user_command("License", function (opts)
         set_license(bufnr, apache2.get_license(M.name))
     elseif license == "GPL3" then
         set_license(bufnr, gpl3.get_license(M.name, opts.fargs[2]))
+    elseif license == "AGPL3" then
+        set_license(bufnr, agpl3.get_license(M.name, opts.fargs[2]))
     elseif license == "LGPL3" then
         set_license(bufnr, agpl3.get_license(M.name, opts.fargs[2]))
     elseif license == "BSD3" then
