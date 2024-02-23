@@ -103,10 +103,28 @@ vim.keymap.set("n", "<leader>gl", function()
     }):find()
 end)
 
+local function keyExists(table, key)
+   for k, _ in pairs(table) do
+      if k == key then
+         return true
+      end
+   end
+   return false
+end
+
 vim.api.nvim_create_user_command("License", function(opts)
     local bufnr = vim.api.nvim_get_current_buf()
-    local license = opts.fargs[1]
-    set_license(bufnr, license_table[license](M.name))
+    if #opts.fargs < 1 or not keyExists(license_table, opts.fargs[1]) then
+      local error_msg = "Valid licenses are: "
+      for _,i in pairs(getTableKeys(license_table)) do
+        error_msg = error_msg ..  i .. ", "
+      end
+      error_msg = error_msg:sub(1, -3)
+      print(error_msg)
+    else
+      local license = opts.fargs[1]
+      set_license(bufnr, license_table[license](M.name))
+    end
 end, {
         nargs = 1,
         complete = function()
