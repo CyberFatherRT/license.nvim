@@ -1,19 +1,21 @@
-local util = require("license.utils")
+local M = {}
 
-local licenses = {}
+M.setup = function (username)
+    M.name = username
+end
 
-for file in io.popen("ls -1 licenses"):lines() do
-    local content = io.popen("cat" .. " licenses/" .. file):read("*a")
-    licenses[file] = content
+local mit = require("license.licenses.mit")
+
+local set_license = function (bufnr, license)
+    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(license, "\n"))
 end
 
 vim.api.nvim_create_user_command("License", function (opts)
-    local bufnr = vim.fn.bufnr("%")
-    local license = licenses[opts.fargs[1]]
-    vim.api.nvim_buf_set_lines(bufnr, 0, 0, 0, util.split(license))
-end, {
-        nargs = 1,
-        complete = function ()
-            return util.get_keys(licenses)
-        end
-})
+    local bufnr = vim.api.nvim_get_current_buf()
+    local license = opts.fargs[1]
+    if license == "MIT" then
+        set_license(bufnr, mit.get_license(M.name))
+    end
+end, { nargs = "*" })
+
+return M
