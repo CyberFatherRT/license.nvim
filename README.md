@@ -19,5 +19,5 @@ To use this plugin, you can use the following command:
 Where `<license>` is the license you want to add to your project.
 
 
-If you have telescope, you can use '<leader>gl' to open the license list and select the license you want to add to your project.
+If you have telescope, you can use '\<leader\>gl' to open the license list and select the license you want to add to your project.
 
