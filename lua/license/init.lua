@@ -9,6 +9,7 @@ local apache2 = require("license.licenses.apache2")
 local gpl3 = require("license.licenses.gpl3")
 local agpl3 = require("license.licenses.agpl3")
 local lgpl3 = require("license.licenses.lgpl3")
+local mpl2 = require("license.licenses.mpl2")
 local bsd3 = require("license.licenses.bsd3")
 
 local set_license = function (bufnr, license)
@@ -28,6 +29,8 @@ vim.api.nvim_create_user_command("License", function (opts)
         set_license(bufnr, agpl3.get_license(M.name, opts.fargs[2]))
     elseif license == "LGPL3" then
         set_license(bufnr, lgpl3.get_license(M.name, opts.fargs[2]))
+    elseif license == "MPL2" then
+        set_license(bufnr, mpl2.get_license())
     elseif license == "BSD3" then
         set_license(bufnr, bsd3.get_license(M.name))
     end
@@ -40,6 +43,7 @@ end, {
                 "GPL3",
                 "AGPL3",
                 "LGPL3",
+                "MPL2",
                 "BSD3",
             }
         end
