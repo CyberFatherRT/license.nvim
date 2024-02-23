@@ -189,7 +189,7 @@ local license = [[
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright %d %s
+   Copyright [yyyy] [name of copyright owner]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -204,9 +204,13 @@ local license = [[
    limitations under the License.
 ]]
 
+M.license = license
+
 M.get_license = function(fullname)
     local current_year = io.popen("date +%Y"):read()
-    return string.format(license, current_year, fullname)
+    license = string.gsub(license, "%[yyyy%]", current_year)
+    license = string.gsub(license, "%[name of copyright owner%]", fullname)
+    return license
 end
 
 return M

@@ -376,7 +376,9 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
   defined by the Mozilla Public License, v. 2.0.
 ]]
 
-M.get_license = function ()
+M.license = license
+
+M.get_license = function (_)
     return license
 end
 

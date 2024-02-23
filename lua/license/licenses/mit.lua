@@ -3,7 +3,7 @@ local M = {}
 local license = [[
 MIT License
 
-Copyright (c) %d %s
+Copyright (c) [year] [fullname]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]
 
+M.license = license
+
 M.get_license = function (fullname)
     local current_year = io.popen("date +%Y"):read()
-    return string.format(license, current_year, fullname)
+    license = string.gsub(license, "%[year%]", current_year)
+    license = string.gsub(license, "%[fullname%]", fullname)
+    return license
 end
 
 return M

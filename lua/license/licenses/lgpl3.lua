@@ -473,8 +473,8 @@ safest to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
-    %s
-    Copyright (C) %d  %s
+    <one line to give the library's name and an idea of what it does.>
+    Copyright (C) <year>  <name of author>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -507,10 +507,15 @@ necessary.  Here is a sample; alter the names:
 That's all there is to it!
 ]]
 
+M.license = license
+
 M.get_license = function (fullname)
     local current_year = io.popen("date +%Y"):read()
     local program_name = vim.fn.input("Program name: ")
-    return string.format(license, program_name, current_year, fullname)
+    license = string.gsub(license, "<year>", current_year)
+    license = string.gsub(license, "<name of author>", fullname)
+    license = string.gsub(license, "<one line to give the library's name and an idea of what it does.>", program_name)
+    return license
 end
 
 return M
