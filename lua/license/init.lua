@@ -6,6 +6,7 @@ end
 
 local mit = require("license.licenses.mit")
 local apache2 = require("license.licenses.apache2")
+local gpl3 = require("license.licenses.gpl3")
 
 local set_license = function (bufnr, license)
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(license, "\n"))
@@ -18,13 +19,16 @@ vim.api.nvim_create_user_command("License", function (opts)
         set_license(bufnr, mit.get_license(M.name))
     elseif license == "Apache2" then
         set_license(bufnr, apache2.get_license(M.name))
+    elseif license == "GPL3" then
+        set_license(bufnr, gpl3.get_license(M.name, opts.fargs[2] or "<program name>"))
     end
 end, {
-        nargs = 1,
+        nargs = "*",
         complete = function ()
             return {
                 "MIT",
-                "Apache2"
+                "Apache2",
+                "GPL3",
             }
         end
 })
