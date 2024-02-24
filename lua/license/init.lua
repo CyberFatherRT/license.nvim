@@ -58,15 +58,6 @@ local license_table = {
     ["CC0"] = cc0.get_license,
 }
 
-local function getTableKeys(tab)
-    local keyset = {}
-    for k, _ in pairs(tab) do
-        keyset[#keyset + 1] = k
-    end
-    return keyset
-end
-
-
 local set_license = function(bufnr, license)
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(license or "", "\n"))
 end
@@ -77,7 +68,7 @@ M.paste_license = function()
         prompt_title = "Select License",
 
         finder = finders.new_table {
-            results = getTableKeys(telescope_license_table)
+            results = vim.tbl_keys(telescope_license_table)
         },
 
         sorter = conf.generic_sorter({}),
@@ -116,7 +107,7 @@ vim.api.nvim_create_user_command("License", function(opts)
     local bufnr = vim.api.nvim_get_current_buf()
     if #opts.fargs < 1 or not keyExists(license_table, opts.fargs[1]) then
       local error_msg = "Valid licenses are: "
-      for _,i in pairs(getTableKeys(license_table)) do
+      for _,i in pairs(vim.tbl_keys(license_table)) do
         error_msg = error_msg ..  i .. ", "
       end
       error_msg = error_msg:sub(1, -3)
@@ -128,7 +119,7 @@ vim.api.nvim_create_user_command("License", function(opts)
 end, {
         nargs = 1,
         complete = function()
-            return getTableKeys(license_table)
+            return vim.tbl_keys(license_table)
         end
     }
 )
