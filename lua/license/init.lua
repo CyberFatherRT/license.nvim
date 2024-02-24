@@ -29,15 +29,6 @@ local bsd3 = require("license.licenses.bsd3")
 local bsd2 = require("license.licenses.bsd2")
 local cc0 = require("license.licenses.cc0")
 
-local function getTableKeys(tab)
-    local keyset = {}
-    for k, _ in pairs(tab) do
-        keyset[#keyset + 1] = k
-    end
-    return keyset
-end
-
-
 local telescope_license_table = {
     ["MIT"] = mit,
     ["Apache 2"] = apache2,
@@ -67,11 +58,20 @@ local license_table = {
     ["CC0"] = cc0.get_license,
 }
 
+local function getTableKeys(tab)
+    local keyset = {}
+    for k, _ in pairs(tab) do
+        keyset[#keyset + 1] = k
+    end
+    return keyset
+end
+
+
 local set_license = function(bufnr, license)
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(license or "", "\n"))
 end
 
-vim.keymap.set("n", "<leader>gl", function()
+M.paste_license = function()
     local bufnr = vim.api.nvim_get_current_buf()
     pickers.new({}, {
         prompt_title = "Select License",
@@ -101,7 +101,7 @@ vim.keymap.set("n", "<leader>gl", function()
         }
 
     }):find()
-end)
+end
 
 local function keyExists(table, key)
    for k, _ in pairs(table) do
