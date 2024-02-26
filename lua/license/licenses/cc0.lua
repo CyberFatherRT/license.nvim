@@ -127,6 +127,7 @@ express Statement of Purpose.
 M.license = license
 
 M.get_license = function (_)
+    return license
 end
 
 return M
