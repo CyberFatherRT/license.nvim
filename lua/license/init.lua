@@ -74,11 +74,15 @@ M.paste_license = function()
         sorter = conf.generic_sorter({}),
 
         attach_mappings = function(_, map)
-            map("i", "<CR>", function(prompt_bufnr)
+            local paste_license_mapping = function (prompt_bufnr)
                 local license = action_state.get_selected_entry().value
                 set_license(bufnr, telescope_license_table[license].get_license(M.name))
                 vim.api.nvim_buf_delete(prompt_bufnr, { force = true })
-            end)
+            end
+
+            map("i", "<CR>", paste_license_mapping)
+            map("n", "<CR>", paste_license_mapping)
+
             return true
         end,
 
