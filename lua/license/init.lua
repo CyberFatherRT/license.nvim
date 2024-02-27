@@ -27,6 +27,7 @@ local epl2 = require("license.licenses.epl2")
 local mpl2 = require("license.licenses.mpl2")
 local bsd3 = require("license.licenses.bsd3")
 local bsd2 = require("license.licenses.bsd2")
+local bsl1 = require("license.licenses.bsl1")
 local cc0 = require("license.licenses.cc0")
 
 local telescope_license_table = {
@@ -41,6 +42,7 @@ local telescope_license_table = {
     ["Mozilla Public License 2.0 (MPL2)"] = mpl2,
     ["BSD 3-Clause (BSD3)"] = bsd3,
     ["BSD 2-Clause (BSD2)"] = bsd2,
+    ["Boost Software License"] = bsl1,
     ["Creative Commons Legal Code (CC0)"] = cc0,
 }
 
@@ -55,6 +57,7 @@ local license_table = {
     ["MPL2"] = mpl2.get_license,
     ["BSD3"] = bsd3.get_license,
     ["BSD2"] = bsd2.get_license,
+    ["BSL1"] = bsl1.get_license,
     ["CC0"] = cc0.get_license,
 }
 
